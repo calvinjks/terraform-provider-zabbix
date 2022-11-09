@@ -71,6 +71,12 @@ func resourceZabbixHost() *schema.Resource {
 				Computed:    true,
 				ForceNew:    true,
 				Description: "(readonly) ID of the host",
+			}, 
+			"proxy_id": &schema.Schema{
+				Type:        schema.TypeString,
+				Computed:    true,
+				ForceNew:    true,
+				Description: "Return only hosts that are monitored by the given proxies.",
 			},
 			"name": &schema.Schema{
 				Type:        schema.TypeString,

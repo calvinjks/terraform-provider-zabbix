@@ -1,14 +1,15 @@
 package main
 
 import (
+	"github.com/hashicorp/terraform-plugin-sdk/plugin"
+	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"github.com/calvinjks/terraform-provider-zabbix/zabbix"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
 
 func main() {
-	p := plugin.ServeOpts{
-		ProviderFunc: zabbix.Provider,
-	}
-
-	plugin.Serve(&p)
+	plugin.Serve(&plugin.ServeOpts{
+		ProviderFunc: func() terraform.ResourceProvider {
+			return provider.Provider()
+		},
+	})
 }
